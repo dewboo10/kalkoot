@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== KALKOOT GLOBAL STYLES ===== */
+
+@layer base {
+  :root {
+    --color-primary:   #E8440A;
+    --color-secondary: #FFB800;
+    --color-dark:      #07090F;
+    --color-navy:      #0D1526;
+    --color-charcoal:  #1A2035;
+    --color-light:     #F5F0E8;
+    --color-muted:     #8B9BB4;
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Hindi/Devanagari text */
+  .lang-hi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    line-height: 1.7;
+  }
+
+  .lang-hi-serif {
+    font-family: 'Noto Serif Devanagari', serif;
+  }
+}
+
+@layer components {
+  /* Button variants */
+  .btn-primary {
+    @apply bg-kalkoot-primary text-white font-body font-semibold px-7 py-3 rounded-sm 
+           hover:bg-orange-600 active:scale-95 transition-all duration-200 
+           focus:outline-none focus:ring-2 focus:ring-kalkoot-primary focus:ring-offset-2 
+           focus:ring-offset-kalkoot-dark;
+  }
+
+  .btn-secondary {
+    @apply border border-kalkoot-secondary text-kalkoot-secondary font-body font-semibold 
+           px-7 py-3 rounded-sm hover:bg-kalkoot-secondary hover:text-kalkoot-dark 
+           active:scale-95 transition-all duration-200;
+  }
+
+  .btn-ghost {
+    @apply text-kalkoot-light/80 font-body font-medium px-5 py-2 rounded-sm
+           hover:text-kalkoot-light hover:bg-white/5 transition-all duration-200;
+  }
+
+  /* Section headings */
+  .section-label {
+    @apply text-kalkoot-primary font-body font-semibold text-sm tracking-[0.2em] uppercase;
+  }
+
+  .section-title {
+    @apply font-display text-5xl md:text-6xl text-kalkoot-light leading-tight;
+  }
+
+  /* Card base */
+  .card-dark {
+    @apply bg-kalkoot-charcoal border border-white/5 rounded-lg p-6 
+           hover:border-kalkoot-primary/30 transition-all duration-300;
+  }
+
+  /* Nav link */
+  .nav-link {
+    @apply text-kalkoot-muted hover:text-kalkoot-light transition-colors duration-200 
+           font-body text-sm font-medium relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-px bg-kalkoot-primary transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-t border-white/8;
+  }
+
+  /* Glowing CTA */
+  .glow-cta {
+    box-shadow: 0 0 30px rgba(232, 68, 10, 0.35), 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .glow-cta:hover {
+    box-shadow: 0 0 50px rgba(232, 68, 10, 0.55), 0 8px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Background noise overlay */
+  .noise-overlay::before {
+    content: '';
+    @apply absolute inset-0 opacity-[0.03] pointer-events-none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+}
+
+@layer utilities {
+  /* Text gradient */
+  .text-gradient-fire {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #E8440A 0%, #FFB800 100%);
+  }
+
+  /* Scrollbar */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Animation delays */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+
+  /* Initially hidden for animations */
+  .anim-hidden { opacity: 0; }
+}
+
+/* ===== TICKER ANIMATION ===== */
+.ticker-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-content {
+  display: inline-block;
+  animation: ticker 40s linear infinite;
+}
+
+.ticker-content:hover {
+  animation-play-state: paused;
+}
+
+/* ===== CUSTOM SCROLLBAR (desktop) ===== */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-dark);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 3px;
+  }
+}
+
+/* ===== SELECTION COLOR ===== */
+::selection {
+  background-color: rgba(232, 68, 10, 0.4);
+  color: #fff;
+}
+
+/* ===== HINDI FONT SIZING ADJUSTMENTS ===== */
+.hindi-lg { font-size: 1.15em; }
+.hindi-sm { font-size: 0.9em; }
